@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Prayana 2025 | IEEE RAS Kerala Section</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00aaff;
+            --accent-color: #ff6600;
+            --dark-color: #333333;
+            --light-color: #f4f4f4;
+            --white-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--primary-color);
+            background-color: rgba(0, 102, 204, 0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 21px;
+            width: 30px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark-color);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/400') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .page-banner .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .page-banner .breadcrumb li {
+            margin: 0 10px;
+            font-size: 1.1rem;
+        }
+        
+        .page-banner .breadcrumb li a {
+            color: var(--secondary-color);
+        }
+        
+        /* Gallery Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-filter button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: var(--white-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark-color);
+        }
+        
+        .gallery-filter button.active,
+        .gallery-filter button:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item .gallery-overlay h3 {
+            color: var(--white-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay h3 {
+            transform: translateY(0);
+        }
+        
+        .gallery-item .gallery-overlay .gallery-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay .gallery-icon {
+            transform: translateY(0);
+        }
+        
+        /* Video Gallery */
+        .video-gallery {
+            margin-top: 60px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .video-item:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+        
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 102, 204, 0.8);
+            color: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .video-item:hover .video-play {
+            background-color: var(--accent-color);
+        }
+        
+        .video-content {
+            padding: 20px;
+        }
+        
+        .video-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .video-content p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Lightbox Modal */
+        #lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        
+        #lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        #lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 5px;
+        }
+        
+        #lightbox-caption {
+            color: var(--white-color);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--white-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        #lightbox-close:hover {
+            color: var(--accent-color);
+        }
+        
+        #lightbox-prev, 
+        #lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #lightbox-prev {
+            left: 20px;
+        }
+        
+        #lightbox-next {
+            right: 20px;
+        }
+        
+        #lightbox-prev:hover, 
+        #lightbox-next:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 60px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+        
+        .footer-social {
+            display: flex;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+        
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-banner h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-filter button {
+                padding: 8px 15px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #lightbox-prev, 
+            #lightbox-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+   
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="container">
+            <h1>Gallery</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Gallery</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Gallery Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Event Gallery</h2>
+                <p>Explore moments from our past events and get excited for what's coming in Prayana 2025!</p>
+            </div>
+            
+            <div class="gallery-filter">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="workshops">Workshops</button>
+                <button data-filter="competitions">Competitions</button>
+                <button data-filter="talks">Technical Talks</button>
+                <button data-filter="networking">Networking</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Gallery Items -->
+                <div class="gallery-item" data-category="workshops">
+                    <img src="https://media.istockphoto.com/id/1303512675/photo/happy-kids-programming-electric-toys-and-robots-at-robotics-classroom.jpg?s=1024x1024&w=is&k=20&c=hf3RGTDU0E0bVVut3STgu8lcYFQu1AJMvzVPEkJ9Arw=" alt="Robotics Workshop">
+                    <div class="gallery-overlay">
+                        <h3>Robotics Workshop</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="competitions">
+                    <img src="https://media.istockphoto.com/id/1151337927/photo/robotic-arm-3d-rendering-for-industrial-content.jpg?s=612x612&w=0&k=20&c=DtbnY9FsKKrPrRyehboG9NlNecNcbS16EAVLZmMCM7s=" alt="Robotics Competition">
+                    <div class="gallery-overlay">
+                        <h3>Robotics Competition</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="talks">
+                    <img src="https://media.istockphoto.com/id/471761149/photo/business-owners-discussing-with-tecnical-team.jpg?s=1024x1024&w=is&k=20&c=iLOcbQtZfYlJmHApJJtsgZnbN8J_cNyjYPXIXGM2qdk=" alt="Technical Talk">
+                    <div class="gallery-overlay">
+                        <h3>AI in Robotics Talk</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="networking">
+                    <img src="https://media.istockphoto.com/id/530685719/photo/group-of-business-people-standing-in-hall-smiling-and-talking-together.jpg?s=612x612&w=0&k=20&c=jX61UCaRLlN_jm-prBgTqLh6SZkptzlJocO3QDQu3k4=" alt="Networking Event">
+                    <div class="gallery-overlay">
+                        <h3>Networking Session</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="workshops">
+                    <img src="https://media.istockphoto.com/id/1254127323/photo/businesswoman-holding-a-speech.jpg?s=612x612&w=0&k=20&c=HpdVnNM-fIjoy1NI-iE01H4oDKn3DScwr1jqkEf9aMk=" alt="Drone Workshop">
+                    <div class="gallery-overlay">
+                        <h3>Drone Workshop</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="competitions">
+                    <img src="https://media.istockphoto.com/id/1164357236/photo/developing-programmer-reading-computer-codes-development-website-design-and-coding.jpg?s=612x612&w=0&k=20&c=WZjijv88D7KllLkfaj-8rqNuEyc8U7AhpHb95fkSfjw=" alt="Programming Challenge">
+                    <div class="gallery-overlay">
+                        <h3>Programming Challenge</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="talks">
+                    <img src="https://media.istockphoto.com/id/1402667894/photo/energy-lecture-screen.jpg?s=612x612&w=0&k=20&c=69CyBqRiHWPdYGn2ToXUIeMYVj76rnoA4MHFYEpZCOg=" alt="Industry Expert Talk">
+                    <div class="gallery-overlay">
+                        <h3>Industry Expert Talk</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="networking">
+                    <img src="https://media.istockphoto.com/id/1214111410/photo/in-technology-research-facility-chief-engineer-stands-in-the-middle-of-the-lab-and-uses.jpg?s=612x612&w=0&k=20&c=pwpzBFjUwWevuKmOfRsqbzbwwOG8eESG7_6I5zCudis=" alt="Mentor Meet">
+                    <div class="gallery-overlay">
+                        <h3>Mentor Meet</h3>
+                        <div class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Gallery -->
+            <div class="video-gallery">
+                <div class="section-title">
+                    <h2>Video Gallery</h2>
+                    <p>Watch highlights from our previous events and expert sessions</p>
+                </div>
+                
+                <div class="video-grid">
+                    <!-- Video Items -->
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="https://media.istockphoto.com/id/1404749040/photo/human-vs-robot.jpg?s=612x612&w=0&k=20&c=IjlGSvSqq8-G-Mzc6CFxwIFzjAk6coClu7SRZQ2XgeU=" alt="Robotics Workshop Highlights">
+                            <div class="video-play">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Robotics Workshop Highlights</h3>
+                            <p>Highlights from our hands-on robotics workshop from Prayana 2024</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="https://media.istockphoto.com/id/1466461995/video/close-up-of-caucasian-young-adult-man-and-woman-are-assisting-in-adjusting-a-robotic-arm-in.jpg?s=640x640&k=20&c=oWLmku1NDylQKL5Xvt0cQPUD9bikgCmX-ohovqHQBh4=" alt="Expert Talk on AI in Robotics">
+                            <div class="video-play">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Expert Talk on AI in Robotics</h3>
+                            <p>An insightful talk on the future of AI in robotics and automation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="https://media.istockphoto.com/id/1488335095/vector/3d-vector-robot-chatbot-ai-in-science-and-business-technology-and-engineering-concept.jpg?s=612x612&w=0&k=20&c=MSxiR6V1gROmrUBe1GpylDXs0D5CHT-mn0Up8D50mr8=">
+                            <div class="video-play">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Competition Finale</h3>
+                            <p>The exciting finale of the robotics competition from last year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal">
+        <span id="lightbox-close"><i class="fas fa-times"></i></span>
+        <div id="lightbox-content">
+            <img id="lightbox-image" src="" alt="">
+            <div id="lightbox-caption"></div>
+        </div>
+        <span id="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+        <span id="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column footer-about">
+                <h3>About Prayana</h3>
+                <p>Prayana is an IEEE RAS Kerala Section initiative promoting robotics and automation through workshops, competitions, and mentorship.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="workshops.html"><i class="fas fa-chevron-right"></i> Workshops</a></li>
+                    <li><a href="speakers.html"><i class="fas fa-chevron-right"></i> Speakers</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-chevron-right"></i> Schedule</a></li>
+                    <li><a href="register.html"><i class="fas fa-chevron-right"></i> Register</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> IEEE RAS Kerala Section, <br>Kerala, India</p>
+                <p><i class="fas fa-phone"></i> +91 123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> info@prayana2025.org</p>
+                <p><i class="fas fa-clock"></i> Monday - Friday: 9:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Prayana - IEEE RAS Kerala Section. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.gallery-filter button');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox Functionality
+        const galleryImages = document.querySelectorAll('.gallery-item');
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        
+        let currentImageIndex = 0;
+        let images = [];
+        
+        // Get all gallery images and their captions
+        galleryImages.forEach((item, index) => {
+            const img = item.querySelector('img');
+            const caption = item.querySelector('h3').textContent;
+            
+            images.push({
+                src: img.src,
+                caption: caption
+            });
+            
+            // Open lightbox when gallery item is clicked
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+        
+        // Open lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImage.src = images[index].src;
+            lightboxCaption.textContent = images[index].caption;
+            lightboxModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close lightbox
+        lightboxClose.addEventListener('click'), () => {
+            lightboxModal.style.display = 'none';
+            document.body.style}
+            </script>
+        </body>
+        </html>

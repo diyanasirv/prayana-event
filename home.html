@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayana 2025 - IEEE RAS Kerala Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #00b3a4;
+            --accent-color: #ff6b6b;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f6f9;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn.btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn.btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn.btn-accent {
+            background-color: var(--accent-color);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 87, 184, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-date {
+            display: inline-block;
+            background-color: var(--accent-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            color: var(--primary-color);
+        }
+
+        .about-highlight {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        /* Features & Highlights */
+        .highlights {
+            background-color: var(--light-color);
+        }
+
+        .highlights-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .highlight-title {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        /* Workshops & Competitions */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        /* Speakers & Mentors */
+        .speakers {
+            background-color: var(--light-color);
+        }
+
+        .speakers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .speaker-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .speaker-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .speaker-card:hover .speaker-image img {
+            transform: scale(1.1);
+        }
+
+        .speaker-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .speaker-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .speaker-role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .speaker-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .speaker-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .speaker-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Schedule */
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .schedule-tab {
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            background-color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .schedule-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .schedule-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .schedule-day {
+            display: none;
+        }
+
+        .schedule-day.active {
+            display: block;
+        }
+
+        .schedule-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary-color);
+            background-color: var(--light-color);
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .schedule-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-speaker {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Registration */
+        .registration {
+            background-color: var(--light-color);
+        }
+
+        .registration-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .checkbox-item input {
+            margin-right: 0.5rem;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-icon {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Contact */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+
+        .contact-text h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-map {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .footer-logo h2 {
+            color: white;
+            margin-bottom: 0;
+            font-size: 1.5rem;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact-icon {
+            color: var(--secondary-color);
+            margin-right: 0.75rem;
+            min-width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            min-width: 80px;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .countdown-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Nav */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease-in-out;
+                z-index: 999;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                font-size: 1.1rem;
+            }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1000;
+            }
+
+            .nav-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            /* Hero adjustments */
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            /* About section */
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact section */
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <div class="logo">
+                <img src="https://png.pngtree.com/png-clipart/20240530/original/pngtree-robot-icon-in-a-round-circle-vector-picture-image_15481918.png" alt="Prayana Logo">
+                <h1>Prayana</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="workshop.html">Workshops</a></li>
+                <li><a href="speakers.html">Speakers</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="gallary.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <div class="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </ul>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <span class="hero-date fade-in">February 25th, 2025</span>
+            <h1 class="hero-title slide-up">PRAYANA</h1>
+            <p class="hero-subtitle fade-in">Explore the Future of Robotics and Automation</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-text">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-text">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-text">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-text">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="hero-btns">
+                <a href="registration.html" class="btn">Register Now</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Prayana</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1682144882681-8bebbbbf58d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJheWFuYSUyMHdvcmtzaG9wJTIwcm9ib3RpY3xlbnwwfHwwfHx8MA%3D%3D" alt="Robotics Workshop">
+                </div>
+                <div class="about-text">
+                    <h2>Driving Innovation in Robotics</h2>
+                    <p>
+                        <span class="about-highlight">Prayana</span> is a pioneering initiative by IEEE RAS Kerala Section, designed to bring together students, researchers, developers, and industry professionals passionate about robotics and automation.
+                    </p>
+                    <p>
+                        Our mission is to create a collaborative platform that fosters innovation, knowledge sharing, and practical skill development in the field of robotics and automation technologies.
+                    </p>
+                    <p>
+                        Through hands-on workshops, technical talks, competitions, and networking opportunities, Prayana aims to inspire the next generation of robotics engineers and enthusiasts to push the boundaries of what's possible.
+                    </p>
+                    <p>
+                        Join us for this transformative journey where ideas come to life, connections are forged, and the future of robotics is shaped.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Highlights -->
+    <section class="section highlights" id="highlights">
+        <div class="container">
+            <h2 class="section-title">Event Highlights</h2>
+            <div class="highlights-container">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="highlight-title">Hands-on Workshops</h3>
+                    <p>
+                        Participate in interactive workshops led by industry experts, covering various aspects of robotics design, programming, and implementation.
+                    </p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="highlight-title">Technical Talks</h3>
+                    <p>
+                        Gain insights from leading professionals and researchers on the latest trends and advancements in robotics and automation technologies.
+                    </p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="highlight-title">Competitions</h3>
+                    <p>Showcase your skills in exciting robotics challenges...</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="highlight-title">Networking</h3>
+                    <p>Connect with robotics professionals, researchers, and enthusiasts for mentorship and collaboration opportunities.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="highlight-title">AI Integration</h3>
+                    <p>Explore machine learning applications in robotics with real-world case studies and demonstrations.</p>
+                </div>
+    
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="highlight-title">Collaborative Projects</h3>
+                    <p>Team-based challenges to solve industrial automation problems using innovative robotic solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+            
+
+                <!-- Workshops & Competitions Section -->
+<section class="section" id="workshops">
+    <div class="container">
+        <h2 class="section-title">Workshops & Competitions</h2>
+        <div class="events-container">
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="https://media.istockphoto.com/id/626305854/photo/robotics-is-her-passion.webp?a=1&b=1&s=612x612&w=0&k=20&c=_6fpNOObWKclJgIHM438ZVc4ha92yBVjrbj54GJHuqw=" alt="ROS Workshop">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">ROS Fundamentals</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-calendar-alt"></i> Feb 24, 2025</p>
+                        <p><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</p>
+                    </div>
+                    <p>Master Robot Operating System basics with hands-on exercises and real-world applications.</p>
+                    <a href="#" class="btn btn-accent">Register Now</a>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="https://media.istockphoto.com/id/1254000257/photo/humanoid-robot-smartphone-data-center-backup.webp?a=1&b=1&s=612x612&w=0&k=20&c=VRr7zBz_RZ4FQVnAs5boLSpibmBtsYB6Ni5icfaXhUY=" alt="AI Competition">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Autonomous Robotics Challenge</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-trophy"></i> ₹1,00,000 Prize Pool</p>
+                        <p><i class="fas fa-users"></i> Team of 2-4 Members</p>
+                    </div>
+                    <p>Design and program autonomous robots to complete complex tasks in timed challenges.</p>
+                    <a href="#" class="btn btn-accent">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Speakers Section -->
+<section class="section speakers" id="speakers">
+    <div class="container">
+        <h2 class="section-title">Featured Speakers</h2>
+        <div class="speakers-container">
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1677333508620-f607517432be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8" alt="Dr. Anika Rao">
+                </div>
+                <div class="speaker-content">
+                    <h3 class="speaker-name">Dr. Anika Rao</h3>
+                    <p class="speaker-role">AI Research Lead, Tech Robotics</p>
+                    <div class="speaker-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1661274061379-eaa968c0025f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8" alt="Rajesh Menon">
+                </div>
+                <div class="speaker-content">
+                    <h3 class="speaker-name">Rajesh Menon</h3>
+                    <p class="speaker-role">Founder, RoboKerala</p>
+                    <div class="speaker-social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Schedule Section -->
+<section class="section" id="schedule">
+    <div class="container">
+        <h2 class="section-title">Event Schedule</h2>
+        <div class="schedule-tabs">
+            <button class="schedule-tab active" data-day="day1">Day 1</button>
+            <button class="schedule-tab" data-day="day2">Day 2</button>
+        </div>
+        <div class="schedule-content">
+            <div class="schedule-day active" id="day1">
+                <div class="schedule-item">
+                    <div class="schedule-time">09:00 - 10:00</div>
+                    <div class="schedule-info">
+                        <h3>Registration & Breakfast</h3>
+                        <p class="schedule-speaker">Main Hall</p>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00 - 11:30</div>
+                    <div class="schedule-info">
+                        <h3>Keynote: Future of Robotics</h3>
+                        <p class="schedule-speaker">Dr. Anika Rao</p>
+                    </div>
+                </div>
+            </div>
+            <div class="schedule-day" id="day2">
+                <!-- Day 2 schedule items -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registration Section -->
+<section class="section registration" id="registration">
+    <div class="container">
+        <h2 class="section-title">Register Now</h2>
+        <div class="registration-form">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Events</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events" value="workshop"> ROS Workshop
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events" value="competition"> Robotics Challenge
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-accent btn-block">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="section" id="gallery">
+    <div class="container">
+        <h2 class="section-title">Event Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1646579886741-12b59840c63f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9ib3RpYyUyMHdvcmtzaG9wJTIwZ3JvdXAlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="Past Event">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus gallery-icon"></i>
+                </div>
+            </div>
+            <!-- Add more gallery items -->
+            <div class="gallery-item">
+                <img src="https://plus.unsplash.com/premium_photo-1682124431132-76331d407d4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cm9ib3RpYyUyMHdvcmtzaG9wJTIwZ3JvdXAlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D" alt="Past Event">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus gallery-icon"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1646268998628-06011da83c18?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJvYm90aWMlMjB3b3Jrc2hvcCUyMGdyb3VwJTIwcGhvdG98ZW58MHx8MHx8fDA%3D" alt="Past Event">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus gallery-icon"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://plus.unsplash.com/premium_photo-1716396589501-fe11f268a0ca?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHJvYm90aWMlMjB3b3Jrc2hvcCUyMGdyb3VwJTIwcGhvdG98ZW58MHx8MHx8fDA%3D" alt="Past Event">
+                <div class="gallery-overlay">
+                    <i class="fas fa-search-plus gallery-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div class="contact-text">
+                        <h3>IEEE RAS Kerala Section</h3>
+                        <p>Tech City Campus, Kochi, Kerala</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <p>contact@prayana2025.org</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="contact-map">
+                <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWl8ZW58MHx8MHx8fDA%3D" alt="Location Map">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+
+
+<!-- Add JavaScript at the end of body -->
+<script>
+    // Mobile Menu Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navClose = document.querySelector('.nav-close');
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.add('show');
+    });
+
+    navClose.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+    });
+
+    // Countdown Timer
+    const countdown = () => {
+        const targetDate = new Date('February 25, 2025 00:00:00').getTime();
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+    };
+
+    setInterval(countdown, 1000);
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>
